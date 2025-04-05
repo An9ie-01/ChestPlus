@@ -1,0 +1,54 @@
+main-gui:
+  size: 27
+  title: "&6창고 선택"
+  slots:
+    10: chest-1
+    12: chest-2
+    14: chest-3
+    16: chest-4
+    22: chest-5
+    0: deco-glass
+    8: deco-glass
+    18: deco-glass
+    26: deco-glass
+
+icons:
+  chest-1:
+    material: CHEST
+    name: "&e1번 창고"
+    lore:
+      - "&7개인 보관 창고"
+    permission: "customchest.open.1"
+
+  chest-2:
+    material: ENDER_CHEST
+    name: "&b2번 창고"
+    lore:
+      - "&7개인 보관 창고"
+    permission: "customchest.open.2"
+
+  chest-3:
+    material: CHEST
+    name: "&a3번 창고"
+    lore:
+      - "&7개인 보관 창고"
+    permission: "customchest.open.3"
+
+  chest-4:
+    material: ENDER_CHEST
+    name: "&d4번 창고"
+    lore:
+      - "&7개인 보관 창고"
+    permission: "customchest.open.4"
+
+  chest-5:
+    material: BARREL
+    name: "&65번 창고"
+    lore:
+      - "&7개인 보관 창고"
+    permission: "customchest.open.5"
+
+  deco-glass:
+    material: GRAY_STAINED_GLASS_PANE
+    name: " "
+    lore: []

@@ -1,0 +1,40 @@
+name: CustomChest
+version: 1.0
+main: com.angie.customChest.CustomChest
+api-version: 1.20
+author: Angie
+description: 사용자 설정 가능한 가상 창고 플러그인
+
+commands:
+  창고:
+    description: 개인 창고를 엽니다
+    usage: /<command>
+    permission: customchest.command
+    permission-message: "&c이 명령어를 사용할 권한이 없습니다."
+    tab-completer: com.angie.customChest.command.StorageTabCompleter
+
+permissions:
+  customchest.command:
+    description: /창고 명령어 사용 권한
+    default: true
+  customchest.open.1:
+    description: 1번 창고 열기
+    default: true
+  customchest.open.2:
+    description: 2번 창고 열기
+    default: op
+  customchest.open.3:
+    description: 3번 창고 열기
+    default: op
+  customchest.open.4:
+    description: 4번 창고 열기
+    default: op
+  customchest.open.5:
+    description: 5번 창고 열기
+    default: op
+  customchest.reload:
+    description: 창고 설정 리로드 권한
+    default: op
+  customchest.open.other:
+    description: 다른 유저의 창고 열기 권한
+    default: op

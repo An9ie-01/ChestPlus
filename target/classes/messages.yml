@@ -1,0 +1,8 @@
+prefix: "&7[&6CustomChest&7] "
+
+no-permission: "%prefix% &c이 창고를 열 수 있는 권한이 없습니다!"
+invalid-storage: "%prefix% &c유효하지 않은 창고입니다."
+storage-opened: "%prefix% &a%id%번 창고가 열렸습니다."
+storage-opened-other: "%prefix% &a%id%번 창고가 열렸습니다. (대상: %target%)"
+reloaded: "%prefix% &a설정이 리로드되었습니다!"
+storage-in-use: "&c누군가 이미 이 창고를 사용 중입니다!"
