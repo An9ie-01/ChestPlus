@@ -1,11 +1,11 @@
-package com.angie.customChest.command;
+package com.angie.chestplus.command;
 
-import com.angie.customChest.CustomChest;
-import com.angie.customChest.config.GuiConfigManager;
-import com.angie.customChest.config.MessageManager;
-import com.angie.customChest.config.SettingsManager;
-import com.angie.customChest.gui.MainStorageGUI;
-import com.angie.customChest.gui.StorageGUI;
+import com.angie.chestplus.ChestPlus;
+import com.angie.chestplus.config.GuiConfigManager;
+import com.angie.chestplus.config.MessageManager;
+import com.angie.chestplus.config.SettingsManager;
+import com.angie.chestplus.gui.MainStorageGUI;
+import com.angie.chestplus.gui.StorageGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -15,21 +15,21 @@ import org.bukkit.entity.Player;
 
 public class StorageCommand implements CommandExecutor {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
 
-    public StorageCommand(CustomChest plugin) {
+    public StorageCommand(ChestPlus plugin) {
         this.plugin = plugin;
     }
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("콘솔에서는 사용할 수 없습니다.");
+            sender.sendMessage("This command can only be used in-game.");
             return true;
         }
 
-        if (args.length == 1 && args[0].equalsIgnoreCase("리로드")) {
-            if (!player.hasPermission("customchest.reload")) {
+        if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
+            if (!player.hasPermission("chestplus.reload")) {
                 player.sendMessage(plugin.getMessageManager().get("no-permission"));
                 return true;
             }
@@ -43,8 +43,8 @@ public class StorageCommand implements CommandExecutor {
             return true;
         }
 
-        if (args.length == 3 && args[0].equalsIgnoreCase("열기")) {
-            if (!player.hasPermission("customchest.open.other")) {
+        if (args.length == 3 && args[0].equalsIgnoreCase("open")) {
+            if (!player.hasPermission("chestplus.open.other")) {
                 player.sendMessage(plugin.getMessageManager().get("no-permission"));
                 return true;
             }
@@ -55,17 +55,17 @@ public class StorageCommand implements CommandExecutor {
             try {
                 chestId = Integer.parseInt(args[2]);
             } catch (NumberFormatException e) {
-                player.sendMessage("§c숫자로 된 창고 번호를 입력해주세요.");
+                player.sendMessage("§cPlease enter a valid chest number.");
                 return true;
             }
 
             OfflinePlayer target = Bukkit.getOfflinePlayer(targetName);
             if (target == null || !target.hasPlayedBefore()) {
-                player.sendMessage("§c해당 플레이어를 찾을 수 없습니다.");
+                player.sendMessage("§cPlayer not found.");
                 return true;
             }
 
-            plugin.getLogger().info(player.getName() + " 가 " + targetName + "의 창고 #" + chestId + " 열람 시도");
+            plugin.getLogger().info(player.getName() + " attempted to open chest #" + chestId + " of " + targetName);
 
             boolean opened = new StorageGUI(plugin).open(player, chestId, target.getUniqueId());
             if (opened) {

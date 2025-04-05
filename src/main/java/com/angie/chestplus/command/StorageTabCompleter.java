@@ -1,4 +1,4 @@
-package com.angie.customChest.command;
+package com.angie.chestplus.command;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -14,16 +14,16 @@ public class StorageTabCompleter implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        if (!sender.hasPermission("customchest.admin")) return Collections.emptyList();
+        if (!sender.hasPermission("chestplus.admin")) return Collections.emptyList();
 
         if (args.length == 1) {
             List<String> sub = new ArrayList<>();
-            sub.add("열기");
-            sub.add("리로드");
+            sub.add("open");
+            sub.add("reload");
             return sub;
         }
 
-        if (args.length == 2 && args[0].equalsIgnoreCase("열기")) {
+        if (args.length == 2 && args[0].equalsIgnoreCase("open")) {
             List<String> names = new ArrayList<>();
             for (Player p : Bukkit.getOnlinePlayers()) {
                 names.add(p.getName());
@@ -31,7 +31,7 @@ public class StorageTabCompleter implements TabCompleter {
             return names;
         }
 
-        if (args.length == 3 && args[0].equalsIgnoreCase("열기")) {
+        if (args.length == 3 && args[0].equalsIgnoreCase("open")) {
             List<String> numbers = new ArrayList<>();
             for (int i = 1; i <= 5; i++) {
                 numbers.add(String.valueOf(i));

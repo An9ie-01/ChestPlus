@@ -1,19 +1,19 @@
 storage:
-  max-slots: 5  # 최대 창고 번호
+  max-slots: 5  # Maximum number of personal chests
 
   chests:
     1:
-      permission: "customchest.open.1"
+      permission: "chestplus.open.1"
       size: 45
     2:
-      permission: "customchest.open.2"
+      permission: "chestplus.open.2"
       size: 45
     3:
-      permission: "customchest.open.3"
+      permission: "chestplus.open.3"
       size: 45
     4:
-      permission: "customchest.open.4"
+      permission: "chestplus.open.4"
       size: 45
     5:
-      permission: "customchest.open.5"
+      permission: "chestplus.open.5"
       size: 45

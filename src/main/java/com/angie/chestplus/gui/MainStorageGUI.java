@@ -1,17 +1,20 @@
-package com.angie.customChest.gui;
+package com.angie.chestplus.gui;
 
-import com.angie.customChest.CustomChest;
-import com.angie.customChest.config.GuiConfigManager;
-import com.angie.customChest.model.StorageHolder;
+import com.angie.chestplus.ChestPlus;
+import com.angie.chestplus.config.GuiConfigManager;
+import com.angie.chestplus.model.StorageHolder;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+/**
+ * Displays the main GUI where the player selects a storage chest.
+ */
 public class MainStorageGUI {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
 
-    public MainStorageGUI(CustomChest plugin) {
+    public MainStorageGUI(ChestPlus plugin) {
         this.plugin = plugin;
     }
 

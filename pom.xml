@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.angie</groupId>
-    <artifactId>customchest</artifactId>
+    <artifactId>chestplus</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>customchest</name>
+    <name>chestplus</name>
 
     <properties>
         <java.version>17</java.version>

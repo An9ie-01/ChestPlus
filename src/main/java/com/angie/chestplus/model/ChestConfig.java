@@ -1,5 +1,8 @@
-package com.angie.customChest.model;
+package com.angie.chestplus.model;
 
+/**
+ * Represents a single chest configuration entry.
+ */
 public class ChestConfig {
 
     private final int id;

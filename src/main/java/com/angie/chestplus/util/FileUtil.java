@@ -1,4 +1,4 @@
-package com.angie.customChest.util;
+package com.angie.chestplus.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -9,17 +9,23 @@ import java.io.IOException;
 
 public class FileUtil {
 
+    /**
+     * Save a YAML file asynchronously (non-blocking).
+     */
     public static void saveAsync(Plugin plugin, YamlConfiguration config, File file) {
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
                 config.save(file);
             } catch (IOException e) {
-                plugin.getLogger().warning("파일 저장 실패: " + file.getName());
+                plugin.getLogger().warning("Failed to save file: " + file.getName());
                 e.printStackTrace();
             }
         });
     }
 
+    /**
+     * Save a YAML file immediately (blocking).
+     */
     public static void saveNow(YamlConfiguration config, File file) {
         try {
             config.save(file);

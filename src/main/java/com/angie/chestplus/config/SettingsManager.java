@@ -1,16 +1,19 @@
-package com.angie.customChest.config;
+package com.angie.chestplus.config;
 
-import com.angie.customChest.CustomChest;
+import com.angie.chestplus.ChestPlus;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 
+/**
+ * Loads plugin settings from settings.yml.
+ */
 public class SettingsManager {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
     private final YamlConfiguration config;
 
-    public SettingsManager(CustomChest plugin) {
+    public SettingsManager(ChestPlus plugin) {
         this.plugin = plugin;
 
         File file = new File(plugin.getDataFolder(), "settings.yml");

@@ -1,9 +1,9 @@
-package com.angie.customChest.gui;
+package com.angie.chestplus.gui;
 
-import com.angie.customChest.CustomChest;
-import com.angie.customChest.model.ChestConfig;
-import com.angie.customChest.model.StorageHolder;
-import com.angie.customChest.util.StorageLockManager;
+import com.angie.chestplus.ChestPlus;
+import com.angie.chestplus.model.ChestConfig;
+import com.angie.chestplus.model.StorageHolder;
+import com.angie.chestplus.util.StorageLockManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -11,23 +11,28 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
+/**
+ * Opens and manages an individual storage chest GUI.
+ */
 public class StorageGUI {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
 
-    public StorageGUI(CustomChest plugin) {
+    public StorageGUI(ChestPlus plugin) {
         this.plugin = plugin;
     }
 
     public boolean open(Player viewer, int chestId, UUID ownerUUID) {
         StorageLockManager lockManager = plugin.getStorageLockManager();
+
+        // If already locked by someone else, deny access
         if (lockManager.isLockedByOther(ownerUUID, chestId, viewer.getUniqueId())) {
             viewer.sendMessage(plugin.getMessageManager().get("storage-in-use"));
             return false;
         }
 
-        lockManager.lockWithTimeout(ownerUUID, chestId, viewer.getUniqueId(), 20L * 60 * 5, plugin); // 10초로 설정
-
+        // Lock the chest (with 5-minute timeout)
+        lockManager.lockWithTimeout(ownerUUID, chestId, viewer.getUniqueId(), 20L * 60 * 5, plugin);
 
         ChestConfig chestConfig = plugin.getConfigManager().getChestConfig(chestId);
         if (chestConfig == null) return false;
@@ -37,7 +42,7 @@ public class StorageGUI {
         String name = Bukkit.getOfflinePlayer(ownerUUID).getName();
         if (name == null) name = "Unknown";
 
-        String title = "창고 #" + chestId + " (" + name + ")";
+        String title = "Storage #" + chestId + " (" + name + ")";
         Inventory gui = Bukkit.createInventory(
                 new StorageHolder("CHEST_" + chestId, ownerUUID, chestId),
                 size,

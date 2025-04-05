@@ -1,19 +1,22 @@
-package com.angie.customChest.config;
+package com.angie.chestplus.config;
 
-import com.angie.customChest.CustomChest;
-import com.angie.customChest.model.ChestConfig;
+import com.angie.chestplus.ChestPlus;
+import com.angie.chestplus.model.ChestConfig;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Loads and manages chest configuration from config.yml.
+ */
 public class ConfigManager {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
     private final Map<Integer, ChestConfig> chestConfigs = new HashMap<>();
     private int maxSlots;
 
-    public ConfigManager(CustomChest plugin) {
+    public ConfigManager(ChestPlus plugin) {
         this.plugin = plugin;
         loadConfig();
     }
@@ -29,13 +32,13 @@ public class ConfigManager {
             for (String key : section.getKeys(false)) {
                 try {
                     int id = Integer.parseInt(key);
-                    String permission = section.getString(key + ".permission", "customchest.open." + id);
+                    String permission = section.getString(key + ".permission", "chestplus.open." + id);
                     int size = section.getInt(key + ".size", 45);
 
                     ChestConfig config = new ChestConfig(id, permission, size);
                     chestConfigs.put(id, config);
                 } catch (NumberFormatException e) {
-                    plugin.getLogger().warning("config.yml > storage.chests: 잘못된 창고 ID 형식: " + key);
+                    plugin.getLogger().warning("Invalid chest ID format in config: " + key);
                 }
             }
         }

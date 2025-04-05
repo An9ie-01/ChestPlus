@@ -1,4 +1,4 @@
-package com.angie.customChest.util;
+package com.angie.chestplus.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -7,7 +7,11 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Manages access locks to prevent multiple players from editing the same chest.
+ */
 public class StorageLockManager {
+
     private final Map<String, UUID> lockedChests = new ConcurrentHashMap<>();
 
     private String toKey(UUID ownerUUID, int chestId) {

@@ -1,40 +1,43 @@
-name: CustomChest
+name: ChestPlus
 version: 1.0
-main: com.angie.customChest.CustomChest
+main: com.angie.chestplus.ChestPlus
 api-version: 1.20
 author: Angie
-description: 사용자 설정 가능한 가상 창고 플러그인
+description: A customizable virtual chest plugin for personal storage.
 
 commands:
-  창고:
-    description: 개인 창고를 엽니다
+  chest:
+    description: Opens your personal storage chest.
     usage: /<command>
-    permission: customchest.command
-    permission-message: "&c이 명령어를 사용할 권한이 없습니다."
-    tab-completer: com.angie.customChest.command.StorageTabCompleter
+    permission: chestplus.command
+    permission-message: "&cYou do not have permission to use this command."
+    tab-completer: com.angie.chestplus.command.StorageTabCompleter
 
 permissions:
-  customchest.command:
-    description: /창고 명령어 사용 권한
+  chestplus.command:
+    description: Allows use of the /chest command
     default: true
-  customchest.open.1:
-    description: 1번 창고 열기
+
+  chestplus.open.1:
+    description: Access to Chest #1
     default: true
-  customchest.open.2:
-    description: 2번 창고 열기
+  chestplus.open.2:
+    description: Access to Chest #2
     default: op
-  customchest.open.3:
-    description: 3번 창고 열기
+  chestplus.open.3:
+    description: Access to Chest #3
     default: op
-  customchest.open.4:
-    description: 4번 창고 열기
+  chestplus.open.4:
+    description: Access to Chest #4
     default: op
-  customchest.open.5:
-    description: 5번 창고 열기
+  chestplus.open.5:
+    description: Access to Chest #5
     default: op
-  customchest.reload:
-    description: 창고 설정 리로드 권한
+
+  chestplus.reload:
+    description: Allows reloading of the ChestPlus configuration
     default: op
-  customchest.open.other:
-    description: 다른 유저의 창고 열기 권한
+
+  chestplus.open.other:
+    description: Allows opening other players' chests
     default: op

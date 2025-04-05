@@ -1,10 +1,13 @@
-package com.angie.customChest.model;
+package com.angie.chestplus.model;
 
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
 import java.util.UUID;
 
+/**
+ * Represents a custom holder for player chests.
+ */
 public class StorageHolder implements InventoryHolder {
 
     private final String guiKey;

@@ -1,21 +1,19 @@
-package com.angie.customChest.task;
+package com.angie.chestplus.task;
 
-import com.angie.customChest.CustomChest;
+import com.angie.chestplus.ChestPlus;
 
 import java.io.File;
 import java.time.Instant;
 
 public class AutoDeleteTask implements Runnable {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
     private final File folder;
     private final long keepSeconds;
 
-    public AutoDeleteTask(CustomChest plugin) {
+    public AutoDeleteTask(ChestPlus plugin) {
         this.plugin = plugin;
-
-        String folderName = plugin.getSettingsManager().getAutoDeleteFolderName();
-        this.folder = new File(plugin.getDataFolder(), folderName);
+        this.folder = new File(plugin.getDataFolder(), plugin.getSettingsManager().getAutoDeleteFolderName());
         this.keepSeconds = plugin.getSettingsManager().getAutoDeleteKeepSeconds();
 
         if (!folder.exists()) folder.mkdirs();
@@ -29,19 +27,15 @@ public class AutoDeleteTask implements Runnable {
         long now = Instant.now().getEpochSecond();
 
         for (File file : files) {
-            String name = file.getName();
-            String[] parts = name.replace(".yml", "").split("_");
+            String[] parts = file.getName().replace(".yml", "").split("_");
             if (parts.length < 3) continue;
 
             try {
                 long timestamp = Long.parseLong(parts[2]);
-                if ((now - timestamp) >= keepSeconds) {
-                    if (file.delete()) {
-                        plugin.getLogger().info("[AutoDelete] 오래된 백업 삭제됨: " + file.getName());
-                    }
+                if ((now - timestamp) >= keepSeconds && file.delete()) {
+                    plugin.getLogger().info("[AutoDelete] Deleted old backup: " + file.getName());
                 }
-            } catch (NumberFormatException ignored) {
-            }
+            } catch (NumberFormatException ignored) {}
         }
     }
 }

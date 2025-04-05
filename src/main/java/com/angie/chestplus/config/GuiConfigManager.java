@@ -1,7 +1,6 @@
-package com.angie.customChest.config;
+package com.angie.chestplus.config;
 
-import com.angie.customChest.CustomChest;
-import org.bukkit.Bukkit;
+import com.angie.chestplus.ChestPlus;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
@@ -15,10 +14,10 @@ import java.util.*;
 
 public class GuiConfigManager {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
     private final YamlConfiguration config;
 
-    public GuiConfigManager(CustomChest plugin) {
+    public GuiConfigManager(ChestPlus plugin) {
         this.plugin = plugin;
         File file = new File(plugin.getDataFolder(), "gui.yml");
         if (!file.exists()) {
@@ -32,7 +31,7 @@ public class GuiConfigManager {
     }
 
     public String getGuiTitle() {
-        return ChatColor.translateAlternateColorCodes('&', config.getString("main-gui.title", "&6창고 선택"));
+        return ChatColor.translateAlternateColorCodes('&', config.getString("main-gui.title", "&6Select Chest"));
     }
 
     public Map<Integer, String> getSlotIconMap() {
@@ -80,8 +79,8 @@ public class GuiConfigManager {
             item.setType(Material.BARRIER);
             ItemMeta meta2 = item.getItemMeta();
             if (meta2 != null) {
-                meta2.setDisplayName(ChatColor.RED + "잠김");
-                meta2.setLore(Collections.singletonList(ChatColor.GRAY + "권한이 없습니다."));
+                meta2.setDisplayName(ChatColor.RED + "Locked");
+                meta2.setLore(Collections.singletonList(ChatColor.GRAY + "You do not have permission."));
                 item.setItemMeta(meta2);
             }
         }

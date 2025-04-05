@@ -1,12 +1,12 @@
-package com.angie.customChest.listener;
+package com.angie.chestplus.listener;
 
-import com.angie.customChest.CustomChest;
-import com.angie.customChest.config.ConfigManager;
-import com.angie.customChest.config.MessageManager;
-import com.angie.customChest.config.GuiConfigManager;
-import com.angie.customChest.gui.StorageGUI;
-import com.angie.customChest.model.ChestConfig;
-import com.angie.customChest.model.StorageHolder;
+import com.angie.chestplus.ChestPlus;
+import com.angie.chestplus.config.ConfigManager;
+import com.angie.chestplus.config.MessageManager;
+import com.angie.chestplus.config.GuiConfigManager;
+import com.angie.chestplus.gui.StorageGUI;
+import com.angie.chestplus.model.ChestConfig;
+import com.angie.chestplus.model.StorageHolder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,11 +18,14 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
+/**
+ * Handles storage GUI interaction events.
+ */
 public class StorageGUIListener implements Listener {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
 
-    public StorageGUIListener(CustomChest plugin) {
+    public StorageGUIListener(ChestPlus plugin) {
         this.plugin = plugin;
     }
 
@@ -54,7 +57,6 @@ public class StorageGUIListener implements Listener {
             return;
         }
 
-        // 퍼미션 확인
         ConfigManager configManager = plugin.getConfigManager();
         ChestConfig chestConfig = configManager.getChestConfig(chestId);
         MessageManager messageManager = plugin.getMessageManager();

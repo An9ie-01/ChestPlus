@@ -1,78 +1,67 @@
-# 📦 CustomChest - 고급 창고 시스템 플러그인
+# 📦 ChestPlus - Advanced Personal Chest System
 
-> **Minecraft 1.20.1 / Paper 기반**  
-> 안전하고, 확장성 있고, 유저 친화적인 개인 창고 플러그인
-
----
-
-## 🧩 주요 기능
-
-- ✅ **개인 전용 창고** 최대 5개까지 확장 가능
-- 🔐 **1인 전용 락 시스템** – 동시 열람 방지, 자동 해제 타이머 포함
-- 💾 **비동기 저장 + 캐싱 시스템** – 렉 없이 안전한 저장
-- 🔒 **권한 기반 창고 제한** – `customchest.chest.1` 등으로 제한 설정 가능
-- 🧰 **자동 저장 & 자동 삭제 기능** – 설정된 간격에 따라 자동 관리
-- 👥 **다른 유저 창고 열람** 기능 (퍼미션 기반)
-- 🧪 **GUI 기반 접근** – `/창고` 명령어로 간편하게 열람
+> **Built for Minecraft 1.20.1 / Paper**  
+> A flexible, async-safe, and user-friendly storage plugin.
 
 ---
 
-## 📸 미리 보기
+## 🧩 Features
 
-| 기본 GUI | 다른 유저 창고 열람 | 사용 중 락 처리 |
-|----------|----------------------|------------------|
-| ![GUI](https://via.placeholder.com/300x160.png?text=Main+Storage+GUI) | ![OpenOther](https://via.placeholder.com/300x160.png?text=Open+Others) | ![Locked](https://via.placeholder.com/300x160.png?text=Storage+Locked) |
-
----
-
-## 🔧 명령어
-
-| 명령어 | 설명 |
-|--------|------|
-| `/창고` | 메인 GUI 열기 |
-| `/창고 열기 <닉네임> <번호>` | 다른 유저의 창고 열기 |
-| `/창고 리로드` | 설정 리로드 (config, gui, messages 등) |
+- ✅ **Expandable Personal Storage** — Up to 5 individual chest slots per player
+- 🔐 **Per-Player Locking System** — Prevents concurrent access with automatic unlock timeout
+- 💾 **Async Saving with Cache** — Lag-free, reliable inventory saving
+- 🔒 **Permission-Based Chest Access** — Limit access with `chestplus.chest.1` through `5`
+- 🧰 **Auto Save & Auto Delete** — Periodically backs up and removes expired files
+- 👥 **View Other Players' Chests** — Admins can inspect others' inventories
+- 🧪 **GUI-Driven Interface** — Access via the `/chest` command
 
 ---
 
-## ⚙️ 퍼미션
+## 📸 Previews
 
-| 퍼미션 노드 | 설명 |
-|--------------|------|
-| `customchest.open` | 자신의 창고 열기 |
-| `customchest.open.other` | 다른 유저의 창고 열람 |
-| `customchest.chest.1` ~ `5` | N번 창고 열 수 있는 권한 |
+| Main GUI | View Other Player | Chest Locked |
+|--|--|-------------|
+| Not prepared | Not prepared | Not prepared            |
 
 ---
 
-## 🛠 설치 방법
+## 🔧 Commands
 
-1. `CustomChest-x.x.x.jar` 다운로드
-2. 서버 `/plugins` 폴더에 넣기
-3. 서버 재시작 or 리로드
-4. `/창고` 명령어로 바로 시작!
+| Command | Description |
+|--------|-------------|
+| `/chest` | Open your personal chest GUI |
+| `/chest open <player> <id>` | View another player's chest |
+| `/chest reload` | Reload config, GUI, and message files |
 
 ---
 
-## 🧙 플러그인 구조
+## ⚙️ Permissions
+
+| Node | Description |
+|------|-------------|
+| `chestplus.open` | Open your own chests |
+| `chestplus.open.other` | View others' chests |
+| `chestplus.chest.1` to `5` | Permission per chest ID |
+
+---
+
+## 🛠 Installation
+
+1. Download the latest `ChestPlus-x.x.x.jar`
+2. Drop it into your server's `/plugins` folder
+3. Restart or reload the server
+4. Use `/chest` to get started
+
+---
+
+## 📁 Plugin File Structure
 
 ```plaintext
-CustomChest/
-├── config.yml               # 설정 파일
-├── gui.yml                  # GUI 아이템 설정
-├── messages.yml             # 메시지 파일
+ChestPlus/
+├── config.yml               # Plugin configuration
+├── gui.yml                  # GUI item layout and visuals
+├── messages.yml             # All messages (fully customizable)
 ├── data/
-│   └── <UUID>_1.yml         # 창고 데이터 (비동기 저장)
+│   └── <UUID>_1.yml         # Chest contents (async saved)
 └── autosave/
-    └── 백업파일_타임스탬프.yml
-```
-
----
-
-## 💬 라이선스
-
-이 플러그인은 MIT 라이선스 하에 배포됩니다.  
-자유롭게 사용, 수정, 재배포가 가능하며 상업적 사용도 허용됩니다.  
-단, 원 저작자 명시 및 라이선스 사본 포함은 필수입니다.
-
-[MIT License 보기](LICENSE)
+    └── backup_TIMESTAMP.yml # Auto-saved backups

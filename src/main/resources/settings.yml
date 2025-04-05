@@ -1,8 +1,8 @@
 auto-save:
   enabled: true
-  interval-ticks: 6000  # 5분 = 20 ticks * 60 * 5
+  interval-ticks: 6000  # 5 minutes = 20 ticks * 60 * 5
 
 auto-delete:
   enabled: true
   folder: "autosave"
-  keep-seconds: 86400  # 24시간
+  keep-seconds: 86400  # 24 hours

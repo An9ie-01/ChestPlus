@@ -1,7 +1,7 @@
-package com.angie.customChest.listener;
+package com.angie.chestplus.listener;
 
-import com.angie.customChest.CustomChest;
-import com.angie.customChest.model.StorageHolder;
+import com.angie.chestplus.ChestPlus;
+import com.angie.chestplus.model.StorageHolder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,11 +10,14 @@ import org.bukkit.inventory.Inventory;
 
 import java.util.UUID;
 
+/**
+ * Saves open chest on player quit.
+ */
 public class StorageQuitListener implements Listener {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
 
-    public StorageQuitListener(CustomChest plugin) {
+    public StorageQuitListener(ChestPlus plugin) {
         this.plugin = plugin;
     }
 

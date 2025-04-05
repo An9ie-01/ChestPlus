@@ -1,23 +1,23 @@
-package com.angie.customChest.data;
+package com.angie.chestplus.data;
 
-import com.angie.customChest.CustomChest;
-import com.angie.customChest.util.FileUtil;
+import com.angie.chestplus.ChestPlus;
+import com.angie.chestplus.util.FileUtil;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
 
+/**
+ * Handles saving/loading of storage contents and caching.
+ */
 public class StorageDataManager {
 
-    private final CustomChest plugin;
+    private final ChestPlus plugin;
     private final File folder;
     private final Map<String, ItemStack[]> lastSavedCache = new HashMap<>();
 
-
-    public StorageDataManager(CustomChest plugin) {
+    public StorageDataManager(ChestPlus plugin) {
         this.plugin = plugin;
         this.folder = new File(plugin.getDataFolder(), "storage");
         if (!folder.exists()) folder.mkdirs();
@@ -36,42 +36,37 @@ public class StorageDataManager {
         if (list == null) return null;
 
         ItemStack[] contents = list.toArray(new ItemStack[0]);
-        lastSavedCache.put(uuid + ":" + chestId, cloneContents(contents)); // ✅ 캐시 저장
+        lastSavedCache.put(uuid + ":" + chestId, cloneContents(contents)); // update cache
         return contents;
     }
 
-
     public void saveSync(UUID uuid, int chestId, ItemStack[] contents) {
-        String path = "storage." + chestId + ".contents";
         File file = getFile(uuid);
-
         YamlConfiguration config = file.exists()
                 ? YamlConfiguration.loadConfiguration(file)
                 : new YamlConfiguration();
 
-        config.set(path, contents);
-        FileUtil.saveNow(config, file); // 동기 저장
+        config.set("storage." + chestId + ".contents", contents);
+        FileUtil.saveNow(config, file); // synchronous save
     }
+
     public void saveAsync(UUID uuid, int chestId, ItemStack[] contents) {
-        String path = "storage." + chestId + ".contents";
         File file = getFile(uuid);
-
         YamlConfiguration config = file.exists()
                 ? YamlConfiguration.loadConfiguration(file)
                 : new YamlConfiguration();
 
-        config.set(path, contents);
-
-        FileUtil.saveAsync(plugin, config, file);
+        config.set("storage." + chestId + ".contents", contents);
+        FileUtil.saveAsync(plugin, config, file); // async save
     }
+
     public boolean hasChanged(ItemStack[] before, ItemStack[] after) {
         if (before == null || after == null) return true;
         if (before.length != after.length) return true;
 
         for (int i = 0; i < before.length; i++) {
-            ItemStack a = before[i] == null ? null : before[i];
-            ItemStack b = after[i] == null ? null : after[i];
-
+            ItemStack a = before[i];
+            ItemStack b = after[i];
             if (!Objects.equals(a, b)) return true;
         }
         return false;
@@ -88,11 +83,11 @@ public class StorageDataManager {
     private ItemStack[] cloneContents(ItemStack[] original) {
         ItemStack[] clone = new ItemStack[original.length];
         for (int i = 0; i < original.length; i++) {
-            if (original[i] != null)
-                clone[i] = original[i].clone();
+            if (original[i] != null) clone[i] = original[i].clone();
         }
         return clone;
     }
+
     public void clearCache() {
         lastSavedCache.clear();
     }
